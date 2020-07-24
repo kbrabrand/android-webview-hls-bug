@@ -22,7 +22,26 @@ public class MainActivity extends Activity {
         mWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
         mWebView.getSettings().setJavaScriptEnabled(true);
 
-        mWebView.loadData("<!DOCTYPE html>\n" +
+        // A simpler example yielding the same result, without the videojs stuff.
+        /*
+        mWebView.loadData("" +
+                "<html>" +
+                "   <body>" +
+                "       <video " +
+                "           style=\"max-width:100%\" " +
+                "           autoplay " +
+                "           controls " +
+                "           muted " +
+                "           loop " +
+                "           src=\"https://stream.mux.com/XQbmVjPSu02s9IdToMDULqtDoSYauU02EI.m3u8\"" +
+                "       >" +
+                "   </body>" +
+                "</html>", "text/html", "utf8"
+        );
+        */
+
+        mWebView.loadData("" +
+                "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
                 "  <meta charset=\"utf-8\">\n" +
@@ -34,7 +53,7 @@ public class MainActivity extends Activity {
                 "<body>\n" +
                 "  <div id=\"version\"></div>\n" +
                 "  <video-js controls>\n" +
-                "    <source src=\"https://stream.mux.com/XQbmVjPSu02s9IdToMDULqtDoSYauU02EI.m3u8\" />\n" +
+                "    <source src=\"https://stream.mux.com/XQbmVjPSu02s9IdToMDULqtDoSYauU02EI.m3u8\" type=\"application/x-mpegURL\"/>\n" +
                 "  </video-js>\n" +
                 "  \n" +
                 "  <script>\n" +
@@ -44,9 +63,6 @@ public class MainActivity extends Activity {
                 "      muted: true,\n" +
                 "      controls: true,\n" +
                 "      html5: {\n" +
-                "        loop: true," +
-                "        muted: true," +
-                "        autoplay: true," +
                 "        hls: {\n" +
                 "          overrideNative: !videojs.browser.IS_SAFARI,\n" +
                 "        }\n" +
@@ -56,7 +72,8 @@ public class MainActivity extends Activity {
                 "    })\n" +
                 "  </script>\n" +
                 "</body>\n" +
-                "</html>", "text/html", "utf8");
+                "</html>", "text/html", "utf8"
+        );
     }
 
     @Override
